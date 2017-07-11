@@ -8,6 +8,10 @@
 import scrapy
 
 
+class LinksItem(scrapy.Item):
+    link = scrapy.Field()
+
+
 class BayItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
