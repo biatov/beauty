@@ -1,3 +1,5 @@
+import os
+
 from scrapy import Request
 from scrapy import Selector
 from ..items import LinksItem
@@ -12,11 +14,7 @@ class LinksSpider(scrapy.Spider):
     catalogs = ["/cosmetics/", "/makeupbrushes/", "/skincare/", "/bathandbody/", "/haircare/", "/nailcare/",
                 "/electrical/", "/accessories/"]
 
-    start_urls = ['http://beautybay.com/makeupbrushes/Makeup-Brush-Sets/_/N-1z00l89Z2j/']
-
-    def start_requests(self):
-        for start_url in self.start_urls:
-            yield Request(url=start_url, headers={'Referer': 'http://beautybay.com/'})
+    start_urls = ['http://beautybay.com/accessories/']
 
     def parse(self, response):
 

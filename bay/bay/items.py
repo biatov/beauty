@@ -13,6 +13,9 @@ class LinksItem(scrapy.Item):
 
 
 class BayItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    brand = scrapy.Field()
+    product_name = scrapy.Field()
+    price = scrapy.Field()
+    colour = scrapy.Field()
+    product_description = scrapy.Field()
+    meta_tag = scrapy.Field()
