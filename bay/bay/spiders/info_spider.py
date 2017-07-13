@@ -5,9 +5,13 @@ from scrapy import Request
 from scrapy import Selector
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from ..items import BayItem
 import scrapy
+from pyvirtualdisplay import Display
 
 
 class InfoSpider(scrapy.Spider):
@@ -17,12 +21,10 @@ class InfoSpider(scrapy.Spider):
 
     start_urls = ['http://beautybay.com']
 
-    # def start_requests(self):
-    #     for start_url in self.start_urls:
-    #         yield Request(url=start_url, headers={'Referer': 'http://beautybay.com/'})
-
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
+        self.display = Display(visible=0, size=(1024, 768))
+        self.display.start()
         self.driver = webdriver.Firefox()
 
     def parse(self, response):
@@ -43,12 +45,20 @@ class InfoSpider(scrapy.Spider):
         self.driver.find_element_by_xpath('.//form[@id="region-settings"]/input[@class="btn action btn-block"]').submit()
 
         no_data = '-'
+        count = 1
         for each in paginate:
             self.driver.get('http://beautybay.com%s' % each)
-            sleep(5)
+            # sleep(1)
+            try:
+                element = WebDriverWait(self.driver, 15).until(
+                    EC.presence_of_element_located((By.ID, "selected-image"))
+                )
+            except:
+                pass
             selenium_response_text = self.driver.page_source
             new_selector = Selector(text=selenium_response_text)
             item = BayItem()
+            item['id'] = count
             try:
                 item['brand'] = new_selector.xpath('.//div[@class="product-info"]').xpath('.//a/text()').extract_first()
             except:
@@ -63,8 +73,8 @@ class InfoSpider(scrapy.Spider):
                 item['price'] = no_data
             colour = list()
             try:
-                for each in new_selector.xpath('.//select[@id="group-sku"]').xpath('.//option'):
-                        colour.append(each.xpath('text()').extract_first().strip())
+                for each_o in new_selector.xpath('.//select[@id="group-sku"]').xpath('.//option'):
+                        colour.append(each_o.xpath('text()').extract_first().strip())
             except:
                 pass
             try:
@@ -73,9 +83,9 @@ class InfoSpider(scrapy.Spider):
                 item['colour'] = no_data
             description = list()
             try:
-                for each in new_selector.xpath('.//div[re:test(@class, "product-description expander")]').xpath('.//p'):
-                    if each.xpath('text()').extract_first():
-                        description.append(each.xpath('text()').extract_first().strip())
+                for each_p in new_selector.xpath('.//div[re:test(@class, "product-description")]').xpath('.//p'):
+                    if each_p.xpath('text()').extract_first():
+                        description.append(each_p.xpath('text()').extract_first().strip())
             except:
                 pass
             try:
@@ -83,10 +93,17 @@ class InfoSpider(scrapy.Spider):
             except:
                 item['product_description'] = no_data
             try:
-                item['meta_tag'] = new_selector.xpath('.//div[@id="curalate-no-content"]').xpath('.//strong/text()').re_first(r'#\w+')
+                item['meta_tag'] = ''
             except:
                 item['meta_tag'] = no_data
+            item['product_url'] = 'http://beautybay.com%s' % each
+            try:
+                item['image_url'] = 'http:%s' % new_selector.xpath('.//a[@id="selected-image"]/img/@src').extract_first().split('?')[0]
+            except:
+                item['image_url'] = no_data
+            count += 1
             yield item
 
         self.driver.close()
+        self.display.stop()
 

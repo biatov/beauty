@@ -13,9 +13,12 @@ class LinksItem(scrapy.Item):
 
 
 class BayItem(scrapy.Item):
+    id = scrapy.Field()
     brand = scrapy.Field()
     product_name = scrapy.Field()
     price = scrapy.Field()
     colour = scrapy.Field()
     product_description = scrapy.Field()
     meta_tag = scrapy.Field()
+    product_url = scrapy.Field()
+    image_url = scrapy.Field()
