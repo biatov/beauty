@@ -19,6 +19,5 @@ class BayItem(scrapy.Item):
     price = scrapy.Field()
     colour = scrapy.Field()
     product_description = scrapy.Field()
-    meta_tag = scrapy.Field()
     product_url = scrapy.Field()
     image_url = scrapy.Field()

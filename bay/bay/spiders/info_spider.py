@@ -1,17 +1,16 @@
-import json
-from time import sleep
-
-from scrapy import Request
+from ..items import BayItem
+import scrapy
 from scrapy import Selector
+
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from ..items import BayItem
-import scrapy
 from pyvirtualdisplay import Display
+
+import json
 
 
 class InfoSpider(scrapy.Spider):
@@ -30,7 +29,7 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
 
         try:
-            with open('nailcare.json') as f:
+            with open('bay/json/nailcare.json') as f:
                 paginate = list(map(lambda each: each['link'][0], json.load(f)))
         except FileNotFoundError:
             paginate = list()
@@ -92,10 +91,6 @@ class InfoSpider(scrapy.Spider):
                 item['product_description'] = '\n'.join(description)
             except:
                 item['product_description'] = no_data
-            try:
-                item['meta_tag'] = ''
-            except:
-                item['meta_tag'] = no_data
             item['product_url'] = 'http://beautybay.com%s' % each
             try:
                 item['image_url'] = 'http:%s' % new_selector.xpath('.//a[@id="selected-image"]/img/@src').extract_first().split('?')[0]
