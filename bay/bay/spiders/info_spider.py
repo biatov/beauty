@@ -29,7 +29,7 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
 
         try:
-            with open('bay/json/accessories.json') as f:
+            with open('bay/json/makeup.json') as f:
                 paginate = list(map(lambda each: each['link'][0], json.load(f)))
         except FileNotFoundError:
             paginate = list()
@@ -47,7 +47,6 @@ class InfoSpider(scrapy.Spider):
         count = 1
         for each in paginate:
             self.driver.get('http://beautybay.com%s' % each)
-            # sleep(1)
             try:
                 element = WebDriverWait(self.driver, 15).until(
                     EC.presence_of_element_located((By.ID, "selected-image"))

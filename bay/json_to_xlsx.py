@@ -77,4 +77,6 @@ def read_xlsx(name, title):
 
 
 # read_xlsx('nailcare', 'Nail')
-read_xlsx('accessories', 'Accessories')
+# read_xlsx('accessories', 'Accessories')
+read_xlsx('electrical', 'Electrical')
+# read_xlsx('makeup', 'Makeup')
