@@ -76,5 +76,5 @@ def read_xlsx(name, title):
         pass
 
 
-read_xlsx('nailcare', 'Nail')
-# read_xlsx('accessories', 'Accessories')
+# read_xlsx('nailcare', 'Nail')
+read_xlsx('accessories', 'Accessories')
