@@ -6,7 +6,7 @@ from scrapy.contrib.linkextractors import LinkExtractor
 class LinksSpider(CrawlSpider):
     name = "link"
 
-    allowed_domains = ["www.lookfantastic.com.hk"]
+    allowed_domains = ["www.lookfantastic.cn"]
 
     start_urls = ['https://www.lookfantastic.com.hk/health-beauty/electrical/view-all-electrical.list']
 
