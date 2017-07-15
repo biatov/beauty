@@ -8,7 +8,7 @@ class LinksSpider(CrawlSpider):
 
     allowed_domains = ["www.lookfantastic.cn"]
 
-    start_urls = ['https://www.lookfantastic.com.hk/health-beauty/electrical/view-all-electrical.list']
+    start_urls = ['https://www.lookfantastic.cn/health-beauty/electrical/view-all-electrical.list']
 
     # https://www.lookfantastic.cn/home.dept?settingsSaved=Y&shippingcountry=HK&switchcurrency=CNY&countrySelected=Y
 

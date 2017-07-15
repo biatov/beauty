@@ -11,7 +11,7 @@ class InfoSpider(scrapy.Spider):
     allowed_domains = ["www.lookfantastic.com.hk"]
 
     try:
-        with open('look/links/electrical.json') as f:
+        with open('look/links_ch/electrical_ch.json') as f:
             links = list(map(lambda each: each['link'], json.load(f)))
     except FileNotFoundError:
         links = list()
