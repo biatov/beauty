@@ -66,3 +66,8 @@ def read_xlsx(name, title, key):
         pass
 
 read_xlsx('hair', 'Hair', 'hair')
+read_xlsx('makeup', 'Makeup', 'makeup')
+read_xlsx('skin', 'Skin', 'skin')
+read_xlsx('body', 'Body', 'body')
+read_xlsx('men', 'Men', 'men')
+read_xlsx('electrical', 'Electrical', 'electrical')

@@ -8,13 +8,13 @@ class LinksSpider(CrawlSpider):
 
     allowed_domains = ["www.lookfantastic.com.hk"]
 
-    start_urls = ['https://www.lookfantastic.com.hk/health-beauty/hair/view-all-haircare.list']
+    start_urls = ['https://www.lookfantastic.com.hk/health-beauty/electrical/view-all-electrical.list']
 
     # https://www.lookfantastic.cn/home.dept?settingsSaved=Y&shippingcountry=HK&switchcurrency=CNY&countrySelected=Y
 
     rules = [
         Rule(LinkExtractor
-             (allow=('health\-beauty\/hair\/view\-all\-haircare\.list\?pageNumber=\d+')),
+             (allow=('/health\-beauty\/electrical\/view\-all\-electrical\.list\?pageNumber=\d+')),
              callback='parse_item',
              follow=True
              )
