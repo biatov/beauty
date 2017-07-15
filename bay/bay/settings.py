@@ -14,10 +14,10 @@ BOT_NAME = 'bay'
 SPIDER_MODULES = ['bay.spiders']
 NEWSPIDER_MODULE = 'bay.spiders'
 
-# DOWNLOADER_MIDDLEWARES = {
-#     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-#     'bay.middlewares.ProxyMiddleware': 100,
-# }
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
+    'bay.middlewares.ProxyMiddleware': 100,
+}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'bay (+http://www.yourdomain.com)'

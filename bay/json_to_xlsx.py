@@ -76,7 +76,11 @@ def read_xlsx(name, title):
         pass
 
 
-# read_xlsx('nailcare', 'Nail')
-# read_xlsx('accessories', 'Accessories')
+read_xlsx('nailcare', 'Nail')
+read_xlsx('accessories', 'Accessories')
 read_xlsx('electrical', 'Electrical')
-# read_xlsx('makeup', 'Makeup')
+read_xlsx('makeup', 'Makeup')
+read_xlsx('makeupbrushes', 'Makeup Brushes')
+read_xlsx('skincare', 'Skincare')
+read_xlsx('haircare', 'Haircare')
+read_xlsx('bathandbody', 'Bath And Body')

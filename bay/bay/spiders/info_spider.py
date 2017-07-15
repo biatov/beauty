@@ -29,7 +29,7 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
 
         try:
-            with open('bay/json/makeup.json') as f:
+            with open('bay/json/accessories.json') as f:
                 paginate = list(map(lambda each: each['link'][0], json.load(f)))
         except FileNotFoundError:
             paginate = list()

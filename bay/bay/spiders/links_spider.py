@@ -14,7 +14,7 @@ class LinksSpider(scrapy.Spider):
     catalogs = ["/cosmetics/", "/makeupbrushes/", "/skincare/", "/bathandbody/", "/haircare/", "/nailcare/",
                 "/electrical/", "/accessories/"]
 
-    start_urls = ['http://beautybay.com/cosmetics/']
+    start_urls = ['http://beautybay.com/accessories/']
 
     def parse(self, response):
 

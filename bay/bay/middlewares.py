@@ -8,9 +8,9 @@
 from scrapy import signals
 
 
-# class ProxyMiddleware(object):
-#     def process_request(self, request, spider):
-#         request.meta['proxy'] = 'http://219.76.4.12:88'
+class ProxyMiddleware(object):
+    def process_request(self, request, spider):
+        request.meta['proxy'] = 'http://219.76.4.12:88'
 
 
 class BaySpiderMiddleware(object):
