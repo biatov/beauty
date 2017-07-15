@@ -8,7 +8,16 @@
 import scrapy
 
 
+class LinksItem(scrapy.Item):
+    link = scrapy.Field()
+
+
 class LookItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    name = scrapy.Field()
+    brand = scrapy.Field()
+    product_url = scrapy.Field()
+    price = scrapy.Field()
+    product_description = scrapy.Field()
+    image_url = scrapy.Field()
+    colour = scrapy.Field()
+
