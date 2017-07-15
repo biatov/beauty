@@ -67,9 +67,9 @@ def read_xlsx(name, title, key):
     except FileNotFoundError:
         pass
 
-read_xlsx('hair', '护发', '护发')
-read_xlsx('makeup', '彩妆', '彩妆')
-read_xlsx('skin', '护肤', '护肤')
-read_xlsx('body', '护体', '护体')
-read_xlsx('men', '男士', '男士')
-read_xlsx('electrical', '美容电器', '美容电器')
+# read_xlsx('hair', '护发', '护发')
+# read_xlsx('makeup', '彩妆', '彩妆')
+# read_xlsx('face', '护肤', '护肤')
+# read_xlsx('body', '护体', '护体')
+# read_xlsx('men', '男士', '男士')
+# read_xlsx('electrical', '美容电器', '美容电器')
