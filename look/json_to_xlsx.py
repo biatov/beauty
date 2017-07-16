@@ -52,8 +52,9 @@ def read_xlsx(name, title, key):
     ws.cell(row=1, column=9).font = Font(bold=True)
     ws.cell(row=1, column=9).value = '图片网址'
 
+    count = 1
     for col, val in enumerate(image, start=2):
-        ws.cell(row=col, column=1).value = ''
+        ws.cell(row=col, column=1).value = count
         ws.cell(row=col, column=2).value = val['brand']
         ws.cell(row=col, column=3).value = val['name']
         ws.cell(row=col, column=4).value = val['product_description']
@@ -62,6 +63,7 @@ def read_xlsx(name, title, key):
         ws.cell(row=col, column=7).value = val['price']
         ws.cell(row=col, column=8).value = val['product_url']
         ws.cell(row=col, column=9).value = val['image_url']
+        count += 1
     try:
         wb.save("look/excel_ch_remake/%s.xlsx" % name)
     except FileNotFoundError:
