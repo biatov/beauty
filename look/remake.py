@@ -30,6 +30,6 @@ def create(filename, english, chinese):
     with open(filename, 'w') as outfile:
         json.dump(new_ch_list, outfile)
 
-create('look/remake_json/men_ch_items_remake.json',
-       'look/json_en/men_items.json',
-       'look/json_ch/men_ch_items.json')
+create('look/remake_json_en/skin_en_items_remake.json',
+       'look/remake_json/face_ch_items_remake.json',
+       'look/json_en/skin_items.json')

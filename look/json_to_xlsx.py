@@ -24,7 +24,7 @@ def keywords(key_url, name):
 
 def read_xlsx(name, title, key):
     try:
-        with open('look/remake_json/%s_ch_items_remake.json' % name) as f:
+        with open('look/remake_json_en/%s_en_items_remake.json' % name) as f:
             urls = json.load(f)
     except FileNotFoundError:
         urls = list()
@@ -65,13 +65,20 @@ def read_xlsx(name, title, key):
         ws.cell(row=col, column=9).value = val['image_url']
         count += 1
     try:
-        wb.save("look/excel_ch_remake/%s.xlsx" % name)
+        wb.save("look/excel_en_remake/%s.xlsx" % name)
     except FileNotFoundError:
         pass
 
-read_xlsx('hair', '护发', '护发')
-read_xlsx('makeup', '彩妆', '彩妆')
-read_xlsx('face', '护肤', '护肤')
-read_xlsx('body', '护体', '护体')
-read_xlsx('men', '男士', '男士')
-read_xlsx('electrical', '美容电器', '美容电器')
+# read_xlsx('hair', '护发', '护发')
+# read_xlsx('makeup', '彩妆', '彩妆')
+# read_xlsx('skin', '护肤', '护肤')
+# read_xlsx('body', '护体', '护体')
+# read_xlsx('men', '男士', '男士')
+# read_xlsx('electrical', '美容电器', '美容电器')
+
+read_xlsx('hair', 'Hair', 'hair')
+read_xlsx('makeup', 'Makeup', 'makeup')
+read_xlsx('skin', 'Skin', 'skin')
+read_xlsx('body', 'Body', 'body')
+read_xlsx('men', 'Men', 'men')
+read_xlsx('electrical', 'Electrical', 'electrical')
