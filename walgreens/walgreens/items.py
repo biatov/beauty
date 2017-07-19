@@ -21,3 +21,7 @@ class WalgreensItem(scrapy.Item):
     description = scrapy.Field()
     product_url = scrapy.Field()
     image_url = scrapy.Field()
+
+
+class BrandsItem(scrapy.Item):
+    brands = scrapy.Field()
