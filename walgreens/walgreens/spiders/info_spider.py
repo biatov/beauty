@@ -41,6 +41,7 @@ class InfoSpider(scrapy.Spider):
         except FileNotFoundError:
             brands = list()
 
+        # paginate = ['/store/c/covergirl-lashblast-mega-volume-mascara/ID=prod3665109-product?skuId=sku3663955']
         no_data = '-'
         for each in paginate:
             self.driver.get('https://www.walgreens.com%s' % each)
