@@ -1,22 +1,20 @@
-from time import sleep
-
+from pyvirtualdisplay import Display
 from scrapy import Selector
 
 from ..items import CatalogsItem
-from scrapy.contrib.spiders import CrawlSpider, Rule
-from scrapy.contrib.linkextractors import LinkExtractor
-from selenium import webdriver
 import scrapy
-from pyvirtualdisplay import Display
-from selenium.webdriver.support.ui import Select
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class CatalogsSpider(scrapy.Spider):
-    name = "catalogs"
+    name = "links"
 
     allowed_domains = ["www.walgreens.com"]
 
-    start_urls = ['https://www.walgreens.com/store/store/category/productlist.jsp?N=360457&Eon=360457&No=0&Erp=72&']
+    start_urls = ['https://www.walgreens.com/store/store/category/productlist.jsp?N=360337/1/ShopAll=360337&Eon=360337/1/ShopAll=360337&Erp=72&']
 
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
@@ -28,6 +26,12 @@ class CatalogsSpider(scrapy.Spider):
         self.driver.get(response.url)
         while True:
             try:
+                try:
+                    element = WebDriverWait(self.driver, 15).until(
+                        EC.presence_of_element_located((By.ID, "proImg"))
+                    )
+                except:
+                    pass
                 selenium_response_text = self.driver.page_source
                 new_selector = Selector(text=selenium_response_text)
                 for each in new_selector.css('a[id*="title-secondary-"]'):

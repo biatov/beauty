@@ -30,7 +30,7 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
 
         try:
-            with open('walgreens/links/cosmetics/eyes.json') as f:
+            with open('walgreens/links/cosmetics.json') as f:
                 paginate = list(map(lambda each: each['link'][0], json.load(f)))
         except FileNotFoundError:
             paginate = list()
@@ -41,7 +41,6 @@ class InfoSpider(scrapy.Spider):
         except FileNotFoundError:
             brands = list()
 
-        # paginate = ['/store/c/covergirl-lashblast-mega-volume-mascara/ID=prod3665109-product?skuId=sku3663955']
         no_data = '-'
         for each in paginate:
             self.driver.get('https://www.walgreens.com%s' % each)

@@ -11,7 +11,7 @@ class BrandsSpider(scrapy.Spider):
 
     allowed_domains = ["www.walgreens.com"]
 
-    start_urls = ['https://www.walgreens.com/store/c/eye-makeup/ID=360457-tier3']
+    start_urls = ['https://www.walgreens.com/store/c/productlist/N=360337/1/ShopAll=360337']
 
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
@@ -21,7 +21,10 @@ class BrandsSpider(scrapy.Spider):
 
     def parse(self, response):
         self.driver.get(response.url)
-        self.driver.find_elements_by_link_text('View more')[1].click()
+        for i in self.driver.find_elements_by_xpath('.//a[@title="view more"]'):
+            i.click()
+        # for each in self.driver.find_elements_by_link_text('View more'):
+        #     each.click()
         selenium_response_text = self.driver.page_source
         new_selector = Selector(text=selenium_response_text)
         item = BrandsItem()
