@@ -3,8 +3,9 @@ import scrapy
 from scrapy import Selector
 import re
 
+from multiprocessing import Pool
+
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -30,7 +31,7 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
 
         try:
-            with open('walgreens/links/cosmetics.json') as f:
+            with open('walgreens/links/cosmetics5.json') as f:
                 paginate = list(map(lambda each: each['link'][0], json.load(f)))
         except FileNotFoundError:
             paginate = list()
@@ -66,7 +67,7 @@ class InfoSpider(scrapy.Spider):
                     name = name.replace(each_b, '').strip()
                     brand = each_b
             item['name'] = name
-            item['brand'] = brand
+            item['brand'] = brand.strip()
             try:
                 item['price'] = new_selector.xpath('.//span[@class="sr-only ng-binding ng-scope"]/text()').extract_first()
             except:
