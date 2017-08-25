@@ -11,7 +11,7 @@ class BrandsSpider(scrapy.Spider):
 
     allowed_domains = ["www.walgreens.com"]
 
-    start_urls = ['https://www.walgreens.com/store/c/productlist/N=360337/1/ShopAll=360337']
+    start_urls = ['https://www.walgreens.com/store/c/productlist/N=360325/1/ShopAll=360325']
 
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)

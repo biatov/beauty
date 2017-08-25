@@ -31,29 +31,34 @@ class InfoSpider(scrapy.Spider):
     def parse(self, response):
 
         try:
-            with open('walgreens/links/cosmetics5.json') as f:
+            with open('walgreens/links/bathandbody.json') as f:
                 paginate = list(map(lambda each: each['link'][0], json.load(f)))
         except FileNotFoundError:
             paginate = list()
 
         try:
-            with open('walgreens/info/cosmetics/brands.json') as f:
+            with open('walgreens/info/bathandbody/brands.json') as f:
                 brands = json.load(f)[0]['brands']
         except FileNotFoundError:
             brands = list()
 
-        # paginate = ['/store/c/covergirl-lashblast-mega-volume-mascara/ID=prod3665109-product?skuId=sku3663955']
         no_data = '-'
         for each in paginate:
-            self.driver.get('https://www.walgreens.com%s' % each)
+            try:
+                self.driver.get('https://www.walgreens.com%s' % each)
+            except:
+                continue
             try:
                 element = WebDriverWait(self.driver, 15).until(
                     EC.presence_of_element_located((By.ID, "proImg"))
                 )
             except:
-                pass
-            selenium_response_text = self.driver.page_source
-            new_selector = Selector(text=selenium_response_text)
+                continue
+            try:
+                selenium_response_text = self.driver.page_source
+                new_selector = Selector(text=selenium_response_text)
+            except:
+                continue
             item = WalgreensItem()
             try:
                 name = new_selector.xpath('.//span[@itemprop="name"]/text()').extract_first()
@@ -66,8 +71,14 @@ class InfoSpider(scrapy.Spider):
                 if each_b in name:
                     name = name.replace(each_b, '').strip()
                     brand = each_b
-            item['name'] = name
-            item['brand'] = brand.strip()
+            try:
+                item['name'] = name
+            except:
+                item['name'] = no_data
+            try:
+                item['brand'] = brand.strip()
+            except:
+                item['brand'] = no_data
             try:
                 item['price'] = new_selector.xpath('.//span[@class="sr-only ng-binding ng-scope"]/text()').extract_first()
             except:
@@ -77,7 +88,7 @@ class InfoSpider(scrapy.Spider):
                 for each_c in new_selector.xpath('.//ul[@ng-if="productModel.colorAvailble"]').xpath('li'):
                     colour.append(each_c.xpath('.//a/@data-content').extract_first().strip())
             except:
-                pass
+                continue
             try:
                 item['colour'] = ', '.join(colour)
             except:
@@ -93,11 +104,17 @@ class InfoSpider(scrapy.Spider):
                 item['description'] = without_tag
             except:
                 item['description'] = no_data
-            item['product_url'] = 'https://www.walgreens.com%s' % each
+            try:
+                item['product_url'] = 'https://www.walgreens.com%s' % each
+            except:
+                item['product_url'] = no_data
             try:
                 item['image_url'] = 'http:%s' % new_selector.xpath('.//img[@id="proImg"]/@src').extract_first()
             except:
                 item['image_url'] = no_data
             yield item
-        self.driver.close()
+        try:
+            self.driver.close()
+        except:
+            pass
         self.display.stop()

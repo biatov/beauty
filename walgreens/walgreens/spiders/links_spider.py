@@ -14,7 +14,7 @@ class CatalogsSpider(scrapy.Spider):
 
     allowed_domains = ["www.walgreens.com"]
 
-    start_urls = ['https://www.walgreens.com/store/store/category/productlist.jsp?N=360337/1/ShopAll=360337&Eon=360337/1/ShopAll=360337&Erp=72&']
+    start_urls = ['https://www.walgreens.com/store/store/category/productlist.jsp?N=360341/1/ShopAll=360341&Eon=360341/1/ShopAll=360341&Erp=72&']
 
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
