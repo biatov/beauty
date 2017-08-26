@@ -10,10 +10,10 @@ from scrapy import signals
 
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
-        request.meta['proxy'] = 'http://219.76.4.12:88'
+        request.meta['proxy'] = 'https://119.9.105.210:9000'
 
 
-class BaySpiderMiddleware(object):
+class BeautylishSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.

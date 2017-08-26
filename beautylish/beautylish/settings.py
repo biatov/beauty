@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for bay project
+# Scrapy settings for beautylish project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,18 +9,18 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'bay'
+BOT_NAME = 'beautylish'
 
-SPIDER_MODULES = ['bay.spiders']
-NEWSPIDER_MODULE = 'bay.spiders'
+SPIDER_MODULES = ['beautylish.spiders']
+NEWSPIDER_MODULE = 'beautylish.spiders'
 
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-    'bay.middlewares.ProxyMiddleware': 100,
+    'beautylish.middlewares.ProxyMiddleware': 100,
 }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'bay (+http://www.yourdomain.com)'
+#USER_AGENT = 'beautylish (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -51,13 +51,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'bay.middlewares.BaySpiderMiddleware': 543,
+#    'beautylish.middlewares.BeautylishSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'bay.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'beautylish.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -69,7 +69,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'bay.pipelines.SomePipeline': 300,
+#    'beautylish.pipelines.SomePipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

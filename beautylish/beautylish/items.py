@@ -8,16 +8,17 @@
 import scrapy
 
 
-class LinksItem(scrapy.Item):
+class BeautylishItem(scrapy.Item):
     link = scrapy.Field()
 
 
-class BayItem(scrapy.Item):
-    id = scrapy.Field()
+class CatalogsItem(scrapy.Item):
+    catalog = scrapy.Field()
+
+
+class InfoItem(scrapy.Item):
     brand = scrapy.Field()
-    product_name = scrapy.Field()
+    title = scrapy.Field()
     price = scrapy.Field()
-    colour = scrapy.Field()
-    product_description = scrapy.Field()
-    product_url = scrapy.Field()
-    image_url = scrapy.Field()
+    catalogs = scrapy.Field()
+    short_description = scrapy.Field()
