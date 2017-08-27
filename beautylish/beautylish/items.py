@@ -22,3 +22,9 @@ class InfoItem(scrapy.Item):
     price = scrapy.Field()
     catalogs = scrapy.Field()
     short_description = scrapy.Field()
+    description = scrapy.Field()
+    image_url = scrapy.Field()
+
+
+class SizesItem(scrapy.Item):
+    url = scrapy.Field()
