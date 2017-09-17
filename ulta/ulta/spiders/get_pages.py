@@ -8,7 +8,7 @@ class GetPages(scrapy.Spider):
 
     allowed_domains = ['www.ulta.com']
 
-    start_urls = ['http://www.ulta.com/makeup-ulta-collection?N=26zi']
+    start_urls = ['http://www.ulta.com/bath-body-gifts-value-sets?N=26vq']
 
     def parse(self, response):
         next_page = response.xpath('.//li[@class="next-prev floatl-span"]/a[contains(.//text(), "Next")]/@href').extract_first()

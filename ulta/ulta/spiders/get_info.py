@@ -1,11 +1,16 @@
 import re
 import json
+from time import sleep
 
 import scrapy
 from scrapy import Selector
 
 from ..items import InfoItem
 from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class GetInfoSpider(scrapy.Spider):
@@ -17,18 +22,24 @@ class GetInfoSpider(scrapy.Spider):
 
     def __init__(self, *a, **kw):
         super().__init__(*a, **kw)
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
 
     def parse(self, response):
         self.driver.get(response.url)
         try:
-            with open('ulta/links/makeup_ultacolection.json') as f:
+            with open('ulta/links/bathandbody/bathandbody.json') as f:
                 start_urls = list(map(lambda i: 'http://www.ulta.com%s' % i['link'], json.load(f)))
         except FileNotFoundError:
             start_urls = list()
         for each in start_urls:
             try:
                 self.driver.get(each)
+            except:
+                pass
+            try:
+                element = WebDriverWait(self.driver, 15).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "s7staticimage")))
+                sleep(3.5)
             except:
                 pass
             selenium_response_text = self.driver.page_source
